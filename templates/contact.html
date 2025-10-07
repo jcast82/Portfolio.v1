@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Me</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+
+  {% include 'header.html' %}
+
+  <section id="contact" class="p-10">
+    <h3 class="text-3xl font-semibold mb-6 text-center">Contact Me</h3>
+    <div class="max-w-xl mx-auto text-center">
+      <p class="text-gray-400 mb-6">
+        Interested in working together or just want to say hi? Drop me a message below.
+      </p>
+
+      {% if success %}
+        <div class="mb-4 p-4 bg-green-700 text-white rounded">
+          ✅ Your message was sent successfully!
+        </div>
+      {% endif %}
+
+       {% if errors %}
+    <div class="mb-4 p-4 bg-red-700 text-white rounded">
+        <ul class="list-disc list-inside">
+        {% for error in errors %}
+            <li>{{ error }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endif %} 
+
+      <form method="POST" action="/contact" class="space-y-4">
+        <input type="text" name="name" placeholder="Your Name" required
+          class="w-full p-3 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <input type="email" name="email" placeholder="Your Email" required
+          class="w-full p-3 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+        <textarea name="message" placeholder="Your Message" rows="5" required
+          class="w-full p-3 rounded bg-gray-800 text-white border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+        <button type="submit"
+          class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded transition">
+          Send Message
+        </button>
+      </form>
+    </div>
+  </section>
+
+  {% include 'footer.html' %}
+
+</body>
+</html>
